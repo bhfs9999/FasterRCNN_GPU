@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteMappingsManager">
+    <list>
+      <list>
+        <remote-mappings server-id="python@sftp://lxc@192.168.0.15:22/usr/share/Anaconda2/bin/python">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$" remote-root="/home/lxc/work/project/FasterRCNN_GPU" />
+            </list>
+          </settings>
+        </remote-mappings>
+        <remote-mappings server-id="python@sftp://srtp2@192.168.0.240:22/usr/share/Anaconda2/bin/python" />
+        <remote-mappings server-id="python@sftp://lxc@192.168.0.241:22/usr/share/anaconda3/envs/py27/bin/python2.7">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$" remote-root="/home/lxc/work/project/FasterRCNN_GPU" />
+            </list>
+          </settings>
+        </remote-mappings>
+      </list>
+    </list>
+  </component>
+</project>

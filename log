@@ -1,0 +1,27 @@
+VGG:
+CUDA_VISIBLE_DEVICES=1 python train.py --net='vgg16' --tag=vgg16 --iters=70000 --cfg='./experiments/cfgs/vgg16.yml' --weight='./data/pretrained_model/vgg16_caffe.pth'
+
+CUDA_VISIBLE_DEVICES=2 python test.py --net='vgg16' --tag=vgg16 --model=60000 --cfg='./experiments/cfgs/vgg16.yml' --model_path='voc_2007_trainval/vgg16/vgg16_faster_rcnn' --imdb='voc_2007_test' --comp
+
+--net='vgg16' --tag=vgg16_cervix --cfg ./experiments/cfgs/vgg16.yml --image_type acid --imdb train --imdbval valid
+
+--net=vgg16 --tag=vgg16_VOC --iters=70000 --cfg ./experiments/cfgs/vgg16.yml --weight=/data/lxc/.torch/models/vgg16_caffe.pth
+
+ResNet:
+
+CUDA_VISIBLE_DEVICES=2 python train.py --net='res18' --tag=res18 --iters=70000 --cfg='./experiments/cfgs/res18.yml' --weight='./data/pretrained_model/Resnet18_imagenet.pth'
+
+CUDA_VISIBLE_DEVICES=3 python train.py --net='res50' --tag=res50 --iters=70000 --cfg='./experiments/cfgs/res50.yml' --weight='./data/pretrained_model/Resnet50_imagenet.pth'
+
+CUDA_VISIBLE_DEVICES=3 python train.py --net='res101' --tag=res101 --iters=50000 --imdb=train --imdbval=valid --image_type='acid' --data_type='cervix' --cfg='./experiments/cfgs/cervix_res101.yml' --weight='./data/pretrained_model/resnet101_caffe.pth'
+
+CUDA_VISIBLE_DEVICES=6 python test.py --net='res101' --tag=res101_1 --cfg='./experiments/cfgs/res101.yml' --model=70000 --model_path='voc_2007_trainval/res101_1' --imdb='voc_2007_test' --comp
+
+CUDA_VISIBLE_DEVICES=3 python eval.py --net='res101' --tag=res101 --num_dets=1 --model=10000 --model_path='cervix_train/res101' --imdb='valid' --image_type='acid' --data_type='cervix' --cfg='./experiments/cfgs/cervix_res101.yml' --comp
+
+FPN:
+CUDA_VISIBLE_DEVICES=3 python train.py --net='fpn50' --tag=fpn50 --iters=60000 --imdb=train --imdbval=valid --image_type='acid' --data_type='cervix' --cfg='./experiments/cfgs/cervix_fpn50.yml' --weight='./data/pretrained_model/resnet50_caffe.pth'
+CUDA_VISIBLE_DEVICES=3 python train.py --net='fpn101' --tag=fpn101 --iters=60000 --imdb=train --imdbval=valid --image_type='acid' --data_type='cervix' --cfg='./experiments/cfgs/cervix_fpn101.yml' --weight='./data/pretrained_model/resnet101_caffe.pth'
+
+CUDA_VISIBLE_DEVICES=3 python train_voc.py --net='fpn50' --tag=fpn50 --iters=70000 --cfg='./experiments/cfgs/fpn50.yml' --weight='./data/pretrained_model/resnet50_caffe.pth'
+CUDA_VISIBLE_DEVICES=4 python test.py --net='fpn50' --tag=fpn50 --cfg='./experiments/cfgs/fpn50.yml' --model=70000 --model_path='voc_2007_trainval/fpn50' --imdb='voc_2007_test' --comp
